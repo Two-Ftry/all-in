@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <!--<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>-->
+</head>
+<body>
+    <div id="app">
+        <h1 v-text="title"></h1>
+        <div>
+            <button id="list" @click="goToList">list</button>
+            <button id="detail" @click="goToDetail">detail</button>
+            <button id="new" @click="goToNew">new</button>
+        </div>
+        <router-view></router-view>
+        <!--<list-page v-if="curPage === 'list'"></list-page>-->
+        <!--<detail-page v-if="curPage === 'detail'"></detail-page>-->
+        <!--<new-page v-if="curPage === 'new'"></new-page>-->
+    </div>
+    <script>
+        // 自定义路由实现
+        var MyRouter = function (routes) {
+            this.routes = routes;
+            // 监听hash值变化
+            window.addEventListener('hashchange', () => {
+                var hash = window.location.hash;
+                alert(hash + '1');
+            }, false);
+        };
+        MyRouter.install = function (Vue, Option) {
+            var RouterView = {
+                template: '<div></div>'
+            }
+            Vue.mixins({
+                components: {
+                    RouterView: RouterView
+                }
+            })
+        };
+
+        Vue.use(MyRouter);
+
+        var ListPage = { template: '<h1>列表页</h1>'};
+        var DetailPage = { template: '<h1>详细页</h1>'};
+        var NewPage = { template: '<h1>新建页</h1>'};
+
+        var routes = {
+            list: ListPage,
+            detail: DetailPage,
+            new: NewPage
+        };
+
+        var router = new MyRouter(routes);
+
+        var vm = new Vue({
+            router: router,
+            data: {
+                title: 'hahhah',
+                curPage: 'list'
+            },
+            components: {
+                ListPage: ListPage,
+                DetailPage: DetailPage,
+                NewPage: NewPage
+            },
+            methods: {
+                goToList: function () {
+                    window.location.hash = 'list'
+                },
+                goToDetail: function () {
+                    window.location.hash = 'detail'
+                },
+                goToNew: function () {
+                    window.location.hash = 'new'
+                }
+            }
+        }).$mount('#app');
+    </script>
+</body>
+</html>
