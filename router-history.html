@@ -20,14 +20,22 @@
     </div>
     <script>
         // 自定义路由实现
-        var MyRouter = function (routes) {
-            this.routes = routes;
+        var MyRouter = function (options) {
+            options = options || {};
+            this.routes = options.routes;
+            this.mode = options.mode || 'hash';
+            // 不支持history模式
+            if (this.mode === 'history' && !this.supportHistoryMode()) {
+                this.mode = 'hash';
+            }
             // 监听hash值变化
-            window.addEventListener('hashchange', (e) => {
-                var hash = window.location.hash;
-                hash = hash.split('#')[1];
-                this.$root.routerPath = hash;
-            }, false);
+            if (this.mode === 'hash') {
+                window.addEventListener('hashchange', () => {
+                    var hash = window.location.hash;
+                    hash = hash.split('#')[1];
+                    this.$root.routerPath = hash;
+                }, false);
+            }
         };
 
         MyRouter.prototype.init = function (vmInst) {
@@ -36,8 +44,19 @@
             }
         };
 
+        MyRouter.prototype.supportHistoryMode = function () {
+            return !!(history && history.pushState);
+        };
+
         MyRouter.prototype.go = function (path) {
-            window.location.hash = path
+            if (this.mode === 'hash') {
+                window.location.hash = path;
+            } else {
+                window.history.pushState({
+                    path: path
+                }, null, path)
+                this.$root.routerPath = path;
+            }
         };
 
 
@@ -69,7 +88,10 @@
             new: NewPage
         };
 
-        var router = new MyRouter(routes);
+        var router = new MyRouter({
+            mode: 'history',
+            routes: routes
+        });
 
         var vm = new Vue({
             router: router,
