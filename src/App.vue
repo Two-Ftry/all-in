@@ -25,5 +25,7 @@
     }
 </script>
 <style scoped>
-
+button{
+    font-size: 0.36rem;
+}
 </style>

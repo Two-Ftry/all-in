@@ -3,10 +3,9 @@
  */
 // function xRequire(module) {
 //     return new Promise((resolve) => {
-//         const modules = require('../_modules.js');
-//         require.ensure([modules], (require)=> {
-//             // const modules = require('../_modules.js');
-//             resolve(require(modules[module]))
+//         require.ensure(['../_modules.js'], () => {
+//             const modules = require('../_modules.js')
+//             resolve(modules[module])
 //         }, 'ensure-chunk')
 //     });
 // }

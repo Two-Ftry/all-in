@@ -5,6 +5,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 
 require('./style.css');
+import('./common/init');
 
 // 设置路由
 Vue.use(VueRouter);
