@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .box {
+            position: absolute;
+            display: table;
+            width: 100%;
+            height: 100%;
+        }
+        .box-row{
+            display: table-row;
+            width: 100%;
+        }
+        .box-cell {
+            display: table-cell;
+            width: 100%;
+            padding: 0 10px;
+            vertical-align: middle;
+        }
+        .ele-a {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 50%;
+            font-size: 20px;
+            text-align: center;
+            background: blue;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+            <div class="box-cell">
+                <div class="ele-a">
+                    
+                    <div class="box">
+                            <div class="box-cell">
+                                    <span>A</span>
+                                </div>
+                    </div>
+
+                </div>
+            </div>
+    </div>
+</body>
+</html>
