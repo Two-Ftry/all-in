@@ -1,6 +1,6 @@
 <template>
-  <div>
-      my ssr App.vue
+  <div class="root-box">
+      my ssr App.vue@@@
   </div>
 </template>
 
@@ -22,4 +22,7 @@ export default {
 
 </script>
 <style lang='less' scoped>
+.root-box{
+  color: red;
+}
 </style>

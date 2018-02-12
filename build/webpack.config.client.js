@@ -1,14 +1,16 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+const isDev = !(process.env.NODE_ENV === 'production');
 
 const config = {
     entry: {
-        // app: [path.resolve(__dirname, '../src/entry-client.js')]
         app: ['./src/entry-client.js']
     },
     output: {
         path: path.resolve(__dirname, '../dist'),
-        filename: '[name].[chunkhash:6].js',
-        chunkFilename: '[name].[chunkhash:6].[ext]'
+        filename: isDev ? '[name].js' : '[name].[chunkhash:6].js',
+        chunkFilename: isDev ? '[name].[ext]' : '[name].[chunkhash:6].[ext]'
     },
     module: {
         rules: [
@@ -28,8 +30,21 @@ const config = {
                 }
             }
         ]
-    }
+    },
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: path.resolve(__dirname, '../src/index.template.html')
+        })
+    ]
 };
+
+if (isDev) {
+    config.devtool = 'source-map';
+    config.devServer = {
+        contentBase: './dist',
+        port: '30007'
+    };
+}
 
 
 module.exports = config;
