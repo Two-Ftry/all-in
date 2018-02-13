@@ -1,7 +1,9 @@
 <template>
+<div id="app">
   <div class="root-box">
       my ssr App.vue@@@
   </div>
+</div>
 </template>
 
 <script>
