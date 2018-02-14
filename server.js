@@ -17,12 +17,21 @@ var server = http.createServer((req, res) => {
     //     template: '<div>hello vue-ssr</div>'
     // });
     const context = {
+        url: req.url
+    }
+
+    if (req.url.indexOf('favicon.ico') !== -1) {
+        res.end('favicon.ico');
+        return;
     }
 
     renderer.renderToString(context, (err, html) => {
         if (err) {
-            res.end('error happen', err);
-            throw err;
+            if (err.code === 404) {
+                res.end('Page not found')
+            } else {
+                res.end('Internal Server Error')
+            }
         }
         res.writeHead(200, {
             'Content-Type': 'text/html'

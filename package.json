@@ -8,6 +8,7 @@
     "build-client": "cross-env NODE_ENV=production webpack --config ./build/webpack.config.client.js",
     "build-client-dev": "cross-env NODE_ENV=dev webpack-dev-server --config ./build/webpack.config.client.js --hot --open",
     "build-server": "cross-env NODE_ENV=production webpack --config ./build/webpack.config.server.js",
+    "build-server-dev": "cross-env NODE_ENV=dev webpack-dev-server --config ./build/webpack.config.server.js --hot --open",
     "build": "rimraf ./dist && npm run build-client && npm run build-server"
   },
   "repository": {
@@ -23,13 +24,17 @@
   "dependencies": {
     "express": "^4.16.2",
     "vue": "^2.5.13",
+    "vue-router": "^3.0.1",
     "vue-server-renderer": "^2.5.13",
-    "vue-template-compiler": "^2.5.13"
+    "vue-template-compiler": "^2.5.13",
+    "vuex": "^3.0.1",
+    "vuex-router-sync": "^5.0.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.1",
+    "babel-preset-stage-0": "^6.24.1",
     "cross-env": "^5.1.3",
     "css-loader": "^0.28.9",
     "html-webpack-plugin": "^2.30.1",
