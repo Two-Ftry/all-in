@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const VueSSRClientPlugin = require('vue-server-renderer/client-plugin');
 
 const isDev = !(process.env.NODE_ENV === 'production');
 
@@ -10,7 +11,8 @@ const config = {
     output: {
         path: path.resolve(__dirname, '../dist'),
         filename: isDev ? '[name].js' : '[name].[chunkhash:6].js',
-        chunkFilename: isDev ? '[name].[ext]' : '[name].[chunkhash:6].[ext]'
+        chunkFilename: isDev ? '[name].js' : '[name].[chunkhash:6].js',
+        publicPath: './dist'
     },
     module: {
         rules: [
@@ -32,18 +34,16 @@ const config = {
         ]
     },
     plugins: [
-        new HtmlWebpackPlugin({
-            template: path.resolve(__dirname, '../src/index.template.html')
-        })
+        new VueSSRClientPlugin()
     ]
 };
 
 if (isDev) {
     config.devtool = 'source-map';
-    config.devServer = {
-        contentBase: './dist',
-        port: '30007'
-    };
+    // config.devServer = {
+    //     contentBase: './dist',
+    //     port: '30007'
+    // };
 }
 
 

@@ -22,6 +22,7 @@
   "homepage": "https://github.com/Two-Ftry/all-in#readme",
   "dependencies": {
     "express": "^4.16.2",
+    "serve-favicon": "^2.4.5",
     "vue": "^2.5.13",
     "vue-server-renderer": "^2.5.13",
     "vue-template-compiler": "^2.5.13"

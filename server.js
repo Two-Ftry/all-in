@@ -1,24 +1,34 @@
 var http = require('http');
-// var SSR = require('vue-server-renderer');
 var Vue = require('vue');
 var fs = require('fs');
+const express = require('express');
+const resolve = file => path.resolve(__dirname, file)
+const path = require('path')
+const favicon = require('serve-favicon')
 
-// var renderer = SSR.createRenderer('./dist/vue-ssr-server-bundle.js', {
-//     // template: fs.readFileSync('./index.template.html', 'utf-8')
-// });
 const { createBundleRenderer } = require('vue-server-renderer')
+const clientManifest = require('./dist/vue-ssr-client-manifest.json')
 const renderer = createBundleRenderer(require('./dist/vue-ssr-server-bundle.json'), {
-    template: fs.readFileSync('./index.template.html', 'utf-8')
+    template: fs.readFileSync('./index.template.html', 'utf-8'),
+    clientManifest
 })
 
-var server = http.createServer((req, res) => {
+const app = express();
 
-    // var app = new Vue({
-    //     template: '<div>hello vue-ssr</div>'
-    // });
+const isProd = process.env.NODE_ENV === 'production'
+
+const serve = (path, cache) => express.static(resolve(path), {
+    maxAge: cache && isProd ? 1000 * 60 * 60 * 24 * 30 : 0
+  });
+
+app.use(favicon('./public/logo-48.png'))
+app.use('/dist', serve('./dist', true));
+app.use('/public', serve('./public', true));
+
+app.get('*', (req, res) => {
     const context = {
+        url: req.url
     }
-
     renderer.renderToString(context, (err, html) => {
         if (err) {
             res.end('error happen', err);
@@ -29,14 +39,9 @@ var server = http.createServer((req, res) => {
         });
         res.end(html);
     })
-
-    // res.end('hello http server')
 })
 
-server.listen(3000);
-server.on('error', (err) => {
-    console.log('@@@', err);
-})
-server.on('listening', () => {
-    console.log('server listening')
+const port = 3000;
+app.listen(port, () => {
+    console.log(`server started at localhost:${port}`)
 })

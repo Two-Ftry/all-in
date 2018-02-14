@@ -10,10 +10,9 @@ const config = {
     output: {
         path: path.resolve(__dirname, '../dist'),
         filename: isDev ? '[name].js' : '[name].[chunkhash:6].js',
-        chunkFilename: isDev ? '[name].[ext]' : '[name].[chunkhash:6].[ext]',
+        chunkFilename: isDev ? '[name].js' : '[name].[chunkhash:6].js',
         libraryTarget: 'commonjs2'
     },
-    devtool: 'source-map',
     module: {
         rules: [
             {
@@ -38,13 +37,8 @@ const config = {
     ]
 };
 
-// if (isDev) {
-//     config.devtool = 'source-map';
-//     config.devServer = {
-//         contentBase: './dist',
-//         port: '30007'
-//     };
-// }
-
+if (isDev) {
+    config.devtool = 'source-map';
+}
 
 module.exports = config;
