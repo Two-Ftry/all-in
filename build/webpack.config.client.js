@@ -11,7 +11,8 @@ const config = {
     output: {
         path: path.resolve(__dirname, '../dist'),
         filename: isDev ? '[name].js' : '[name].[chunkhash:6].js',
-        chunkFilename: isDev ? '[name].[ext]' : '[name].[chunkhash:6].js'
+        chunkFilename: isDev ? '[name].[ext]' : '[name].[chunkhash:6].js',
+        publicPath: '/dist/'
     },
     module: {
         rules: [
@@ -33,9 +34,9 @@ const config = {
         ]
     },
     plugins: [
-        new HtmlWebpackPlugin({
-            template: path.resolve(__dirname, '../src/index.template.html')
-        }),
+        // new HtmlWebpackPlugin({
+        //     template: path.resolve(__dirname, '../src/index.template.html')
+        // }),
         // 此插件在输出目录中
         // 生成 `vue-ssr-client-manifest.json`。
         new VueSSRClientPlugin()
