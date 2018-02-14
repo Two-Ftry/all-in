@@ -4,7 +4,7 @@ const isProd = process.env.NODE_ENV === 'production';
 
 const config = {
     // entry: {
-    //     app: './src/entry-server.js'
+    //     main: './src/entry-server.js'
     // },
     entry: './src/entry-server.js',
     target: 'node',
