@@ -12,7 +12,7 @@ const config = {
         path: path.resolve(__dirname, '../dist'),
         // filename: isProd ? '[name].[chunkhash:6].js' : '[name].js',
         filename: 'server-bundle.js',
-        chunkFilename: isProd ? '[name].[chunkhash:6].js' : '[name].js' ,
+        // chunkFilename: isProd ? '[name].[chunkhash:6].js' : '[name].js',
         publicPath: '/dist/',
         libraryTarget: 'commonjs2'
     },

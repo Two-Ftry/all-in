@@ -29,9 +29,11 @@ if (isProd) {
     })
 } else {
     const setupDevServer = require('./build/setup-dev-server');
-    setupDevServer(app, '', (bundle, clientManifest) => {
+    const templatePath = path.resolve(__dirname, './src/index.template.html');
+    setupDevServer(app, templatePath, (bundle, clientManifest, template) => {
         renderer = createBundleRenderer(bundle, {
-            template: fs.readFileSync('./index.template.html', 'utf-8'),
+            // template: fs.readFileSync('./index.template.html', 'utf-8'),
+            template,
             clientManifest
         })
     });
