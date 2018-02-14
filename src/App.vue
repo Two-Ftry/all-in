@@ -2,6 +2,10 @@
 <div id="app">
   <div class="root-box">
       my ssr App.vue@@@
+      <br>
+      hello, ssr
+      <br>
+      dklsjfk
   </div>
 </div>
 </template>
@@ -18,7 +22,7 @@ export default {
   computed: {},
 
   mounted () {
-    
+
   },
 
   methods: {}

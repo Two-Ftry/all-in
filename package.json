@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node server.js",
+    "start": "cross-env NODE_ENV=production node server.js",
     "build-client": "cross-env NODE_ENV=production webpack --config ./build/webpack.config.client.js",
-    "build-client-dev": "cross-env NODE_ENV=dev webpack-dev-server --config ./build/webpack.config.client.js --hot --open",
     "build-server": "cross-env NODE_ENV=production webpack --config ./build/webpack.config.server.js",
     "build": "rimraf ./dist && npm run build-client && npm run build-server"
   },
@@ -36,11 +36,13 @@
     "html-webpack-plugin": "^2.30.1",
     "less": "^2.7.3",
     "less-loader": "^4.0.5",
+    "memory-fs": "^0.4.1",
     "rimraf": "^2.6.2",
     "style-loader": "^0.20.1",
     "vue-loader": "^14.1.1",
     "vue-style-loader": "^3.1.2",
     "webpack": "^3.11.0",
+    "webpack-dev-middleware": "^2.0.5",
     "webpack-dev-server": "^2.11.1"
   }
 }
