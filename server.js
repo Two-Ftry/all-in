@@ -31,11 +31,14 @@ if (isProd) {
     const setupDevServer = require('./build/setup-dev-server');
     const templatePath = path.resolve(__dirname, './src/index.template.html');
     setupDevServer(app, templatePath, (bundle, clientManifest, template) => {
-        renderer = createBundleRenderer(bundle, {
-            // template: fs.readFileSync('./index.template.html', 'utf-8'),
-            template,
-            clientManifest
-        })
+        if (bundle && clientManifest) {
+            renderer = createBundleRenderer(bundle, {
+                template,
+                clientManifest
+            })
+        } else {
+            console.warn('bundle, clientManifest one of them is null~~')
+        }
     });
 }
 

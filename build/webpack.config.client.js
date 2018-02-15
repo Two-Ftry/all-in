@@ -30,6 +30,11 @@ const config = {
                       less: 'vue-style-loader!css-loader!less-loader', // <style lang="less">
                     }
                 }
+            },
+            {
+                test: /\.less$/,
+                exclude: /node_modules/,
+                loaders: ['style-loader', 'css-loader', 'less-loader']
             }
         ]
     },

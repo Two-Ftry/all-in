@@ -2,6 +2,8 @@
 import Vue from 'vue';
 import { createApp } from './app';
 
+import('./common/common.less')
+
 const { app, router, store } = createApp();
 
 // 同步服务端数据

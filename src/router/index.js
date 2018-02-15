@@ -4,8 +4,10 @@ Vue.use(VueRouter);
 
 // import Foo from '../views/Foo.vue';
 // import Bar from '../views/Bar.vue';
-const Foo = () => import('../views/Foo.vue');
-const Bar = () => import('../views/Bar.vue');
+// const Foo = () => import('../views/Foo.vue');
+// const Bar = () => import('../views/Bar.vue');
+const ListPage = () => import('../modules/cards/ListPage.vue');
+const EditPage = () => import('../modules/cards/edit/EditPage.vue');
 
 export function createRouter () {
     return new VueRouter({
@@ -13,17 +15,17 @@ export function createRouter () {
         routes: [
             {
                 path: '/',
-                component: Foo
+                component: ListPage
             },
             {
-                name: 'foo',
-                path: '/foo',
-                component: Foo
+                name: 'edit',
+                path: '/edit',
+                component: EditPage
             },
             {
-                name: 'bar',
-                path: '/bar',
-                component: Bar
+                name: 'list',
+                path: '/list',
+                component: ListPage
             }
         ]
     })

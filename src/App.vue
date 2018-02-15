@@ -1,21 +1,14 @@
 <template>
 <div id="app">
-  <div class="root-box">
-      my ssr App.vue@@@
-      <ul>
-        <li>
-          <router-link to="foo">foo</router-link>
-        </li>
-        <li>
-          <router-link to="bar">bar</router-link>
-        </li>
-      </ul>
+    <sidebar></sidebar>
+    <div class="content">
       <router-view></router-view>
-  </div>
+    </div>
 </div>
 </template>
 
 <script>
+import Sidebar from './modules/sidebar/Sidebar.vue';
 export default {
   data () {
     return {
@@ -26,7 +19,9 @@ export default {
     return store.dispatch('getUserInfo');
   },
 
-  components: {},
+  components: {
+    Sidebar
+  },
 
   computed: {},
 
@@ -39,7 +34,9 @@ export default {
 
 </script>
 <style lang='less' scoped>
-.root-box{
-  color: red;
+.content {
+  height: 100%;
+  margin-left: 200px;
+  background-color: aquamarine;
 }
 </style>
