@@ -1,17 +1,30 @@
 <template>
-  <div>Bar.vue</div>
+    <div>
+      卡片信息：
+      <br>
+      {{card.name}}
+    </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 export default {
   data () {
     return {
     };
   },
 
+  asyncData ({ store, route }) {
+    return store.dispatch('getCard');
+  },
+
   components: {},
 
-  computed: {},
+  computed: {
+    ...mapGetters([
+          'card'
+      ])
+  },
 
   mounted () {},
 

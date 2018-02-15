@@ -22,6 +22,10 @@ export default {
     };
   },
 
+  asyncData ({ store, route }) {
+    return store.dispatch('getUserInfo');
+  },
+
   components: {},
 
   computed: {},

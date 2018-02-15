@@ -3,7 +3,7 @@ import { createApp } from './app';
 
 export default context => {
     return new Promise((resolve, reject) => {
-        const { app, router } = createApp();
+        const { app, router, store } = createApp();
         router.push(context.url)
         // 等到 router 将可能的异步组件和钩子函数解析完
         router.onReady(() => {
@@ -12,8 +12,20 @@ export default context => {
             if (!matchedComponents.length) {
                 return reject({ code: 404 })
             }
-            // Promise 应该 resolve 应用程序实例，以便它可以渲染
-            resolve(app)
+
+            Promise.all(matchedComponents.map(Component => {
+                if (Component.asyncData) {
+                    return Component.asyncData({
+                        store,
+                        route: router.currentRoute
+                    });
+                }
+            })).then(() => {
+                context.state = store.state;
+                // Promise 应该 resolve 应用程序实例，以便它可以渲染
+                resolve(app)
+            }).catch(reject);
+            
         }, reject)
     })
 };

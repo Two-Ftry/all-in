@@ -2,19 +2,22 @@ import Vue from 'vue';
 import App from './App.vue';
 
 import { createRouter } from './router/';
+import { createStore } from './store/';
 
 export function createApp () {
-    // const _App = Vue.extend(App);
-    // const app = new _App();
+    
     const router = createRouter();
+    const store = createStore();
 
     const app = new Vue({
         router,
+        store,
         render: h => h(App)
     })
 
     return {
         app,
-        router
+        router,
+        store
     };
 };

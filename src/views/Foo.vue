@@ -1,17 +1,30 @@
 <template>
-  <div>foo.vue</div>
+  <div>
+      用户信息
+      <br>
+      <p>{{userInfo.name}}</p>
+  </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 export default {
   data () {
     return {
     };
   },
 
+  asyncData ({ store, route }) {
+    return store.dispatch('getUserInfo');
+  },
+
   components: {},
 
-  computed: {},
+  computed: {
+      ...mapGetters([
+          'userInfo'
+      ])
+  },
 
   mounted () {},
 
