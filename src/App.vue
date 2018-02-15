@@ -2,10 +2,15 @@
 <div id="app">
   <div class="root-box">
       my ssr App.vue@@@
-      <br>
-      hello, ssr
-      <br>
-      dklsjfk
+      <ul>
+        <li>
+          <router-link to="foo">foo</router-link>
+        </li>
+        <li>
+          <router-link to="bar">bar</router-link>
+        </li>
+      </ul>
+      <router-view></router-view>
   </div>
 </div>
 </template>
