@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/Two-Ftry/all-in#readme",
   "dependencies": {
+    "d3": "^4.13.0",
     "express": "^4.16.2",
     "serve-favicon": "^2.4.5",
     "vue": "^2.5.13",
@@ -31,6 +32,7 @@
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
+    "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-stage-0": "^6.24.1",
     "chokidar": "^2.0.2",

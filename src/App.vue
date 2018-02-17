@@ -37,6 +37,5 @@ export default {
 .content {
   height: 100%;
   margin-left: 200px;
-  background-color: aquamarine;
 }
 </style>

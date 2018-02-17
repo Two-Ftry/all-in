@@ -6,7 +6,7 @@ Vue.use(VueRouter);
 // import Bar from '../views/Bar.vue';
 // const Foo = () => import('../views/Foo.vue');
 // const Bar = () => import('../views/Bar.vue');
-const ListPage = () => import('../modules/cards/ListPage.vue');
+const ListPage = () => import('../modules/cards/list/ListPage.vue');
 const EditPage = () => import('../modules/cards/edit/EditPage.vue');
 
 export function createRouter () {

@@ -35,6 +35,10 @@ const config = {
                 test: /\.less$/,
                 exclude: /node_modules/,
                 loaders: ['style-loader', 'css-loader', 'less-loader']
+            },
+            {
+                test: /\.css$/,
+                loaders: ['style-loader', 'css-loader']
             }
         ]
     },

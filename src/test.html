@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>My SSR</title>
+    <link rel="stylesheet" href="../public/css/c3.min.css" />
+    <script type="text/javascript" src="../public/js/d3.min.js"></script>
+    <script type="text/javascript" src="../public/js/c3.min.js"></script>
+</head>
+<body>
+    <div id="my-chart" style="width: 500px;height: 600px;border: 1px solid #ccc; padding: 20px; background-color:blueviolet;">
+    </div>
+    <script>
+        c3.generate({
+            bindto: '#my-chart',
+            data: {
+            columns: [
+                ['data1', 30, 200, 100, 400, 150, 250],
+                ['data2', 50, 20, 10, 40, 15, 25]
+            ]
+            }
+        });
+    </script>
+</body>
+</html>
