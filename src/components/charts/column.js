@@ -31,7 +31,7 @@ export function column (el, options, data) {
     });
     const xScale = d3.scaleBand()
         .domain(categoryData)
-        .range([0, w])
+        .rangeRound([0, w])
         .paddingInner([0.1])
         .paddingOuter([0.1]);
 

@@ -1,60 +1,22 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const merge = require('webpack-merge');
 const VueSSRClientPlugin = require('vue-server-renderer/client-plugin');
-
+const baseConfig = require('./webpack.base.config');
 const isProd = process.env.NODE_ENV === 'production';
 
-const config = {
+const config = merge(baseConfig, {
     entry: {
         app: './src/entry-client.js'
     },
     output: {
-        path: path.resolve(__dirname, '../dist'),
-        filename: isProd ? '[name].[chunkhash:6].js' : '[name].js',
-        chunkFilename: isProd ? '[name].[chunkhash:6].js' : '[name].js',
-        publicPath: '/dist/'
+        chunkFilename: isProd ? '[name].[chunkhash:6].js' : '[name].js'
     },
     module: {
         rules: [
-            {
-                test: /\.js$/,
-                exclude: /node_modules/,
-                loaders: ['babel-loader', 'eslint-loader']
-            },
-            {
-                enforce: 'pre',
-                test: /\.vue$/,
-                loader: 'eslint-loader',
-                exclude: /node_modules/
-            },
-            {
-                test: /\.vue$/,
-                exclude: /node_modules/,
-                loader: 'vue-loader',
-                options: {
-                    loaders: {
-                        less: 'vue-style-loader!css-loader!less-loader'// <style lang="less">
-                    }
-                }
-            },
-            {
-                test: /\.less$/,
-                exclude: /node_modules/,
-                loaders: ['style-loader', 'css-loader', 'less-loader']
-            },
-            {
-                test: /\.css$/,
-                loaders: ['style-loader', 'css-loader']
-            }
         ]
     },
     plugins: [
         new VueSSRClientPlugin()
     ]
-};
-
-if (!isProd) {
-    config.devtool = 'source-map';
-}
+});
 
 module.exports = config;
