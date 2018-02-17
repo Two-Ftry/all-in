@@ -4,20 +4,19 @@
 
 <script>
 export default {
-  data () {
-    return {
-    };
-  },
+    data () {
+        return {
+        };
+    },
 
-  components: {},
+    components: {},
 
-  computed: {},
+    computed: {},
 
-  mounted () {},
+    mounted () {},
 
-  methods: {}
+    methods: {}
 }
-
 </script>
 <style lang='less' scoped>
 </style>

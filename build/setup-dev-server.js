@@ -8,14 +8,13 @@ const fs = require('fs');
 const serverConfig = require('./webpack.config.server.js');
 const clientConfig = require('./webpack.config.client.js');
 
-module.exports = setupDevServer = (app, templatePath, cb) => {
-
+module.exports = function setupDevServer (app, templatePath, cb) {
     let bundle = null;
     let clientManifest = null;
     let template = fs.readFileSync(templatePath, 'utf-8');
 
     // 模版更新
-    chokidar.watch(templatePath).on('change',() => {
+    chokidar.watch(templatePath).on('change', () => {
         template = fs.readFileSync(templatePath, 'utf-8')
         cb(bundle, clientManifest, template);
         console.log('tempate updated~~~')
@@ -28,6 +27,14 @@ module.exports = setupDevServer = (app, templatePath, cb) => {
     });
     app.use(devMiddleware);
     clientCompiler.plugin('done', (stats) => {
+        stats = stats.toJson()
+        stats.errors.forEach(err => console.error(err))
+        stats.warnings.forEach(err => console.warn(err))
+        if (stats.errors.length > 0) {
+            clientManifest = null;
+            cb(bundle, clientManifest, template);
+            return;
+        }
         const fs = devMiddleware.fileSystem;
         const dir = path.resolve(__dirname, '../dist');
         clientManifest = JSON.parse(fs.readFileSync(path.join(dir, 'vue-ssr-client-manifest.json')));
@@ -41,14 +48,13 @@ module.exports = setupDevServer = (app, templatePath, cb) => {
     serverCompiler.outputFileSystem = mfs;
     serverCompiler.watch({}, (err, stats) => {
         if (err) {
-            console.error(err);
+            bundle = null;
+            cb(bundle, clientManifest, template);
             return;
         }
         const dir = path.resolve(__dirname, '../dist');
         bundle = JSON.parse(mfs.readFileSync(path.join(dir, 'vue-ssr-server-bundle.json')));
         cb(bundle, clientManifest, template);
         console.log('server compiled success~~');
-    })
-
-
+    });
 };

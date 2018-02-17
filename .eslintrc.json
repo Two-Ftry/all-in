@@ -1,0 +1,12 @@
+{
+    "extends": "standard",
+    "parser": "babel-eslint",
+    "plugins": [
+        "html"
+    ],
+    "rules": {
+        "semi":"off",
+        "indent": ["error", 4],
+        "eol-last":"off"
+    }
+}

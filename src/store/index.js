@@ -7,7 +7,7 @@ export function createStore () {
     return new Vuex.Store({
         state: {
             userInfo: {},
-            card:{}
+            card: {}
         },
         actions: {
             getUserInfo ({ commit }) {
@@ -30,7 +30,7 @@ export function createStore () {
             }
         },
         mutations: {
-            setUserInfo (state,  userInfo) {
+            setUserInfo (state, userInfo) {
                 state.userInfo = userInfo;
             },
             setCard (state, card) {
@@ -45,5 +45,5 @@ export function createStore () {
                 return state.card;
             }
         }
-    }) 
+    })
 };

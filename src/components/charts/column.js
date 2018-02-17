@@ -1,14 +1,13 @@
 
 import * as d3 from 'd3';
-
 /**
  * 创建柱状图
- * @param {*} el 
- * @param {*} options 
+ * @param {*} el
+ * @param {*} options
  */
 export function column (el, options, data) {
-    options = options || {};
-    const margin =  options.margin || {top: 20, right: 20, bottom: 30, left: 40};
+    options = options || { };
+    const margin = options.margin || {top: 20, right: 20, bottom: 30, left: 40};
     const w = el.offsetWidth - margin.left - margin.right;
     const h = el.offsetHeight - margin.top - margin.bottom;
 
@@ -24,23 +23,23 @@ export function column (el, options, data) {
     });
     const max = d3.max(valueData);
     const yScale = d3.scaleLinear()
-                    .domain([0, max])
-                    .range([h, 0]);
-    
+        .domain([0, max])
+        .range([h, 0]);
+
     const categoryData = data.map((d) => {
         return d.name;
     });
     const xScale = d3.scaleBand()
-                    .domain(categoryData)
-                    .range([0, w])
-                    .paddingInner([0.1])
-                    .paddingOuter([0.1]);
+        .domain(categoryData)
+        .range([0, w])
+        .paddingInner([0.1])
+        .paddingOuter([0.1]);
 
     // 画坐标轴
     const yAxis = d3.axisLeft(yScale);
     svg.append('g')
         .call(yAxis);
-    
+
     const xAxis = d3.axisBottom(xScale);
     svg.append('g')
         .attr('transform', `translate(0, ${h})`)
@@ -72,5 +71,4 @@ export function column (el, options, data) {
         .attr('y', (d) => {
             return h - (yScale(0) - yScale(d.value));
         })
-    
 };

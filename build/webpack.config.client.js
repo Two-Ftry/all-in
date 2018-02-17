@@ -19,7 +19,13 @@ const config = {
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
-                loader: 'babel-loader'
+                loaders: ['babel-loader', 'eslint-loader']
+            },
+            {
+                enforce: 'pre',
+                test: /\.vue$/,
+                loader: 'eslint-loader',
+                exclude: /node_modules/
             },
             {
                 test: /\.vue$/,
@@ -27,7 +33,7 @@ const config = {
                 loader: 'vue-loader',
                 options: {
                     loaders: {
-                      less: 'vue-style-loader!css-loader!less-loader', // <style lang="less">
+                        less: 'vue-style-loader!css-loader!less-loader'// <style lang="less">
                     }
                 }
             },

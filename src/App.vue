@@ -10,28 +10,27 @@
 <script>
 import Sidebar from './modules/sidebar/Sidebar.vue';
 export default {
-  data () {
-    return {
-    };
-  },
+    data () {
+        return {
+        };
+    },
 
-  asyncData ({ store, route }) {
-    return store.dispatch('getUserInfo');
-  },
+    asyncData ({ store, route }) {
+        return store.dispatch('getUserInfo');
+    },
 
-  components: {
-    Sidebar
-  },
+    components: {
+        Sidebar
+    },
 
-  computed: {},
+    computed: {},
 
-  mounted () {
+    mounted () {
 
-  },
+    },
 
-  methods: {}
+    methods: {}
 }
-
 </script>
 <style lang='less' scoped>
 .content {

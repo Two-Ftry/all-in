@@ -9,22 +9,22 @@
 <script>
 import CardChart from './CardChart.vue'
 export default {
-  data () {
-    return {
-    };
-  },
+    data () {
+        return {
+        };
+    },
 
-  components: {
-    CardChart
-  },
+    components: {
+        CardChart
+    },
 
-  computed: {},
+    computed: {},
 
-  mounted () {},
+    mounted () {},
 
-  methods: {}
+    methods: {
+    }
 }
-
 </script>
 <style lang='less' scoped>
 .card-page {

@@ -13,7 +13,7 @@ const { createBundleRenderer } = require('vue-server-renderer')
 const app = express();
 const serve = (path, cache) => express.static(resolve(path), {
     maxAge: cache && isProd ? 1000 * 60 * 60 * 24 * 30 : 0
-  });
+});
 
 app.use(favicon('./public/logo-48.png'))
 app.use('/dist', serve('./dist', true));
@@ -37,6 +37,7 @@ if (isProd) {
                 clientManifest
             })
         } else {
+            renderer = null;
             console.warn('bundle, clientManifest one of them is null~~')
         }
     });
@@ -47,7 +48,8 @@ app.get('*', (req, res) => {
         url: req.url
     }
     if (!renderer) {
-        res.end('正在编译...');
+        res.writeHead(200, {'Content-Type': 'text/html;charset=utf-8'});
+        res.end('正在编译...如果你在开发过程中，看看控制台eslint是否有报错');
         return;
     }
     renderer.renderToString(context, (err, html) => {

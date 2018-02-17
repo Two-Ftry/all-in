@@ -13,34 +13,33 @@
 
 <script>
 export default {
-  data () {
-    return {
-        menus: [
-            {
-                name: '新建',
-                to: 'edit'
-            },
-            {
-                name: '列表',
-                to: 'list'
-            }
-        ]
-    };
-  },
+    data () {
+        return {
+            menus: [
+                {
+                    name: '新建',
+                    to: 'edit'
+                },
+                {
+                    name: '列表',
+                    to: 'list'
+                }
+            ]
+        };
+    },
 
-  components: {},
+    components: {},
 
-  computed: {},
+    computed: {},
 
-  mounted () {},
+    mounted () {},
 
-  methods: {
-      handleMenu (to) {
-          this.$router.push(to);
-      }
-  }
+    methods: {
+        handleMenu (to) {
+            this.$router.push(to);
+        }
+    }
 }
-
 </script>
 <style lang='less' scoped>
 @import url('../../common/colors.less');

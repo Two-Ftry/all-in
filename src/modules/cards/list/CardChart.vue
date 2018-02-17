@@ -9,46 +9,45 @@
 // import * as d3 from 'd3';
 import chartsUtil from '../../../components/charts/index.js';
 export default {
-  data () {
-    return {
-        c3: null,
-        chart: null
-    };
-  },
+    data () {
+        return {
+            c3: null,
+            chart: null
+        };
+    },
 
-  components: {},
+    components: {},
 
-  computed: {},
+    computed: {},
 
-  mounted () {
-      this.initChart();
-  },
+    mounted () {
+        this.initChart();
+    },
 
-  methods: {
-     initChart () {
+    methods: {
+        initChart () {
         // chartsUtil.column(this.$refs.card, {});
-        chartsUtil(this.$refs.card, {
-            type: 'column',
-            xAxis: {
-                type: 'category',
-                name: 'letter',
-                data: ['A', 'B', 'C', 'D', 'E', 'F']
-            },
-            yAxis: {
-                type: 'value'
-            },
-            series: [
-                {
-                    name: 'A',
-                    type: 'column',
-                    data: [1, 2, 3, 4, 5, 99]
-                }
-            ]
-        });
-      }
-  }
+            chartsUtil(this.$refs.card, {
+                type: 'column',
+                xAxis: {
+                    type: 'category',
+                    name: 'letter',
+                    data: ['A', 'B', 'C', 'D', 'E', 'F', 'H']
+                },
+                yAxis: {
+                    type: 'value'
+                },
+                series: [
+                    {
+                        name: 'A',
+                        type: 'column',
+                        data: [1, 2, 3, 4, 5, 9, 26]
+                    }
+                ]
+            });
+        }
+    }
 }
-
 </script>
 <style lang='less' scoped>
 .card-chart {
