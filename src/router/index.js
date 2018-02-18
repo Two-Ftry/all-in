@@ -1,13 +1,14 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+
+// import ListPage from '../modules/cards/list/ListPage.vue';
+// import EditPage from '../modules/cards/edit/EditPage.vue';
+
 Vue.use(VueRouter);
 
-// import Foo from '../views/Foo.vue';
-// import Bar from '../views/Bar.vue';
-// const Foo = () => import('../views/Foo.vue');
-// const Bar = () => import('../views/Bar.vue');
-const ListPage = () => import('../modules/cards/list/ListPage.vue');
-const EditPage = () => import('../modules/cards/edit/EditPage.vue');
+// 单独的chunkFilename
+const ListPage = () => import(/* webpackChunkName: "list" */ '../modules/cards/list/ListPage.vue');
+const EditPage = () => import(/* webpackChunkName: "edit" */ '../modules/cards/edit/EditPage.vue');
 
 export function createRouter () {
     return new VueRouter({
