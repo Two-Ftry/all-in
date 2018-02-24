@@ -9,6 +9,10 @@
 // import * as d3 from 'd3';
 import chartsUtil from '../../../components/charts/index.js';
 export default {
+    props: {
+        chartData: Object
+    },
+
     data () {
         return {
             c3: null,
@@ -26,25 +30,7 @@ export default {
 
     methods: {
         initChart () {
-        // chartsUtil.column(this.$refs.card, {});
-            chartsUtil(this.$refs.card, {
-                type: 'column',
-                xAxis: {
-                    type: 'category',
-                    name: 'letter',
-                    data: ['A', 'B', 'C', 'D', 'E', 'F', 'H']
-                },
-                yAxis: {
-                    type: 'value'
-                },
-                series: [
-                    {
-                        name: 'A',
-                        type: 'column',
-                        data: [1, 2, 3, 4, 5, 9, 26]
-                    }
-                ]
-            });
+            chartsUtil(this.$refs.card, this.chartData);
         }
     }
 }

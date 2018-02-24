@@ -1,9 +1,12 @@
 
 import { column } from './column';
+import { pie } from './pie';
+
 import { translate } from './optionUtils';
 
 const utils = {
-    column
+    column,
+    pie
 };
 
 export default function (el, options) {
