@@ -5,6 +5,8 @@ export default {
             chartsData: [
                 {
                     type: 'column',
+                    color: 'green',
+                    renderer: 'svg',
                     xAxis: {
                         type: 'category',
                         name: 'letter',
@@ -23,7 +25,7 @@ export default {
                 },
                 {
                     type: 'pie',
-                    endAngle: Math.PI,
+                    endAngle: 2 * Math.PI,
                     renderer: 'svg',
                     innerRadius: '0',
                     padAngle: 0,

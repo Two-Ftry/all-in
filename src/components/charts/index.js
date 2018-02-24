@@ -4,6 +4,10 @@ import { pie } from './pie';
 
 import { translate } from './optionUtils';
 
+import Vue from 'vue';
+if (!Vue.$isServer) {
+    import('../skin/default.less');
+}
 const utils = {
     column,
     pie
