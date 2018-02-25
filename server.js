@@ -1,10 +1,9 @@
-var http = require('http');
-var Vue = require('vue');
 var fs = require('fs');
 const express = require('express');
 const resolve = file => path.resolve(__dirname, file)
 const path = require('path')
 const favicon = require('serve-favicon')
+const logger = require('./nodejs/logger');
 
 const isProd = process.env.NODE_ENV === 'production'
 
@@ -47,6 +46,7 @@ app.get('*', (req, res) => {
     const context = {
         url: req.url
     }
+    logger.info('新请求到来：%s', req.url);
     if (!renderer) {
         res.writeHead(200, {'Content-Type': 'text/html;charset=utf-8'});
         res.end('正在编译...如果你在开发过程中，看看控制台eslint是否有报错');
@@ -54,9 +54,11 @@ app.get('*', (req, res) => {
     }
     renderer.renderToString(context, (err, html) => {
         if (err) {
+            logger.error('渲染错误：%o', err);
             res.end('error happen', err);
             throw err;
         }
+        logger.info('请求结束：%s', req.url);
         res.writeHead(200, {
             'Content-Type': 'text/html'
         });
