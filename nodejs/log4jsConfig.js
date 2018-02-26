@@ -8,13 +8,23 @@ module.exports = {
             backups: 5,
             compress: true
         },
+        http: {
+            type: 'dateFile',
+            filename: path.resolve(__dirname, '../logs/http-logs.log'),
+            pattern: '.yyyy-MM-dd',
+            compress: true
+        },
         out: {
             type: 'stdout'
         }
     },
     categories: {
         default: {
-            appenders: [ 'allin' ],
+            appenders: ['allin'],
+            level: 'info'
+        },
+        http: {
+            appenders: ['http'],
             level: 'info'
         },
         out: {

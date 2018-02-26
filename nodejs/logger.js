@@ -16,4 +16,8 @@ if (!isProd) {
     logger = log4js.getLogger('out');
 }
 
-module.exports = logger;
+// module.exports = logger;
+exports.logger = logger;
+
+let httpLoggerName = isProd ? 'http' : 'out';
+exports.httpLogger = log4js.getLogger(httpLoggerName);

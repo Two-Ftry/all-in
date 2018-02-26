@@ -1,11 +1,12 @@
 const path = require('path');
 const isProd = process.env.NODE_ENV === 'production';
+const appConfig = require('../config/');
 
 const config = {
     output: {
         path: path.resolve(__dirname, '../dist'),
         filename: isProd ? '[name].[chunkhash:6].js' : '[name].js',
-        publicPath: '/dist/'
+        publicPath: `/${appConfig.name}/dist/`
     },
     module: {
         rules: [
