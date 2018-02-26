@@ -1,6 +1,7 @@
 
 import { column } from './column';
 import { pie } from './pie';
+import { line } from './line';
 
 import { translate } from './optionUtils';
 
@@ -10,7 +11,8 @@ if (!Vue.$isServer) {
 }
 const utils = {
     column,
-    pie
+    pie,
+    line
 };
 
 export default function (el, options) {

@@ -40,6 +40,21 @@ const translateData = {
         });
 
         return result;
+    },
+    line (data) {
+        const categoryData = data.xAxis.data;
+        const valueData = data.series[0].data;
+
+        const result = [];
+
+        categoryData.forEach((c, index) => {
+            const r = {};
+            r.name = c;
+            r.value = valueData[index];
+            result.push(r);
+        });
+
+        return result;
     }
 };
 
@@ -47,7 +62,11 @@ const translateData = {
   * 数据转换
   */
 translateUtil.data = (type, data) => {
-    return translateData[type](data);
+    if (translateData[type]) {
+        return translateData[type](data);
+    } else {
+        return null;
+    }
 };
 
 export const translate = translateUtil;
