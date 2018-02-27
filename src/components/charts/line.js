@@ -42,22 +42,67 @@ const renderer = {
 
         // 使用d3.line()计算x、y坐标
         const line = d3.line()
-            .x((d) => {
-                return xScale(d);
+            .x(function (d) {
+                return xScale(d.name) + xScale.bandwidth() / 2;
             })
-            .y((d) => {
-                return yScale(d);
+            .y(function (d) {
+                return yScale(d.value);
             });
 
+        // 画线条
         // 进入
-        // svg.selectAll('path.line')
-        //     .data()
+        svg.selectAll('path.line')
+            .data([data])
+            .enter()
+            .append('path')
+            .attr('class', 'line');
 
         // 退出
+        svg.selectAll('path.line')
+            .data([data])
+            .exit()
+            .remove();
 
+        const initData = [];
+        data.forEach((d) => {
+            initData.push({
+                name: d.name,
+                value: data[0].value
+            });
+        })
         // 更新
+        svg.selectAll('path.line')
+            .data([data])
+            .attr('d', (d) => {
+                return line(d);
+            })
+            // .transition()
+            // .duration(1000)
+            // .attrTween('d', (d) => {
+            //     const interpolate = d3.scaleLinear()
+            //         .domain([0, 1])
+            //         .range([initData, d]);
+            //     return (t) => {
+            //         return line(interpolate(t));
+            //     }
+            // })
+            .style('fill', 'none')
+            .style('stroke', 'green')
+            .style('stroke-width', 1);
 
-        console.log('svg', line)
+        // 画圆圈
+        svg.selectAll('circle.line-circle')
+            .data(data)
+            .enter()
+            .append('circle')
+            .attr('class', 'line-circle')
+            .attr('r', 5)
+            .attr('cx', (d) => {
+                return xScale(d.name) + xScale.bandwidth() / 2;
+            })
+            .attr('cy', (d) => {
+                return yScale(d.value);
+            });
     },
     canvas () {
         // todo
