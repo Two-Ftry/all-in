@@ -55,6 +55,9 @@ const translateData = {
         });
 
         return result;
+    },
+    area (data) {
+        return translateData.line(data);
     }
 };
 

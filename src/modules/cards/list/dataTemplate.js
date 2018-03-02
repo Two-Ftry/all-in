@@ -55,6 +55,25 @@ export default {
                             data: [1, 2, 3, 4, 5, 9, 26]
                         }
                     ]
+                },
+                {
+                    type: 'area',
+                    renderer: 'svg',
+                    xAxis: {
+                        type: 'category',
+                        name: 'letter',
+                        data: ['A', 'B', 'C', 'D', 'E', 'F', 'H']
+                    },
+                    yAxis: {
+                        type: 'value'
+                    },
+                    series: [
+                        {
+                            name: 'A',
+                            type: 'column',
+                            data: [1, 2, 3, 4, 5, 9, 26]
+                        }
+                    ]
                 }
             ]
         }

@@ -6,9 +6,9 @@ import { renderer } from './renderer';
  * @param {*} el
  * @param {*} options
  */
-export function line (el, options, data) {
+export function area (el, options, data) {
     options = options || {};
     options.renderer = options.renderer || 'svg';
 
-    renderer.line(el, options, data);
+    renderer.area(el, options, data);
 };
