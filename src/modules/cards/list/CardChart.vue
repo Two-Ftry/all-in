@@ -8,6 +8,7 @@
 <script>
 // import * as d3 from 'd3';
 import chartsUtil from '../../../components/charts/index.js';
+import lineChart from '../../../components/charts/lineChart';
 export default {
     props: {
         chartData: Object
@@ -16,7 +17,8 @@ export default {
     data () {
         return {
             c3: null,
-            chart: null
+            chart: null,
+            chartsUtil
         };
     },
 
@@ -30,7 +32,11 @@ export default {
 
     methods: {
         initChart () {
-            chartsUtil(this.$refs.card, this.chartData);
+            if (!this.chartData.test) {
+                this.chartsUtil(this.$refs.card, this.chartData);
+            } else {
+                lineChart(this.$refs.card);
+            }
         }
     }
 }

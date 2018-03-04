@@ -123,7 +123,7 @@ const rendererUtil = {
     }
 };
 
-export const renderer = {
+const renderer = {
     line (el, options, data) {
         rendererUtil[options.renderer](el, options, data, 'line')
     },
@@ -131,3 +131,5 @@ export const renderer = {
         rendererUtil[options.renderer](el, options, data, 'area')
     }
 };
+
+export default renderer;

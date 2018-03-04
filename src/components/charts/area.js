@@ -1,5 +1,5 @@
 
-import { renderer } from './renderer';
+import renderer from './renderer';
 
 /**
  * 创建条形图

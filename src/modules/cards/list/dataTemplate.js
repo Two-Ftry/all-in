@@ -74,6 +74,9 @@ export default {
                             data: [1, 2, 3, 4, 5, 9, 26]
                         }
                     ]
+                },
+                {
+                    test: true
                 }
             ]
         }
