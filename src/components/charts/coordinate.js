@@ -9,29 +9,29 @@ class Coordinate {
         this.options = options;
     }
     xStart () {
-        return this.options._margins.left;
+        return this.options.margins.left;
     }
     yStart () {
         const options = this.options;
-        return options._height - options._margins.bottom;
+        return options.height - options.margins.bottom;
     }
     xEnd () {
         const options = this.options;
-        return options._width - options._margins.right;
+        return options.width - options.margins.right;
     }
     yEnd () {
         const options = this.options;
-        return options._margins.top;
+        return options.margins.top;
     }
 
     quadrantWidth () {
         const options = this.options;
-        return options._width - options._margins.left - options._margins.right;
+        return options.width - options.margins.left - options.margins.right;
     }
 
     quadrantHeight () {
         const options = this.options;
-        return options._height - options._margins.top - options._margins.bottom;
+        return options.height - options.margins.top - options.margins.bottom;
     }
 
     // 创建坐标系
@@ -70,6 +70,18 @@ class Coordinate {
             .attr('y', 0)
             .attr('width', this.quadrantWidth() + 2 * padding)
             .attr('height', this.quadrantHeight());
+    }
+
+    // 创建绘图主体
+    renderBody (svg, _bodyG) {
+        if (!_bodyG) {
+            _bodyG = svg.append('g')
+                .attr('class', 'body')
+                .attr('transform', 'translate(' +
+                this.xStart() + ',' +
+                this.yEnd() + ')');
+        }
+        return _bodyG;
     }
 }
 

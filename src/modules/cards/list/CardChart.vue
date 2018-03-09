@@ -1,14 +1,13 @@
 <template>
-  <div class="card-chart">
-      <div class="card" ref="card">
-      </div>
-  </div>
+    <div class="card-chart">
+        <div class="card"
+             ref="card">
+        </div>
+    </div>
 </template>
 
 <script>
-// import * as d3 from 'd3';
 import chartsUtil from '../../../components/charts/index.js';
-import lineChart from '../../../components/charts/lineChart';
 export default {
     props: {
         chartData: Object
@@ -34,8 +33,6 @@ export default {
         initChart () {
             if (!this.chartData.test) {
                 this.chartsUtil(this.$refs.card, this.chartData);
-            } else {
-                lineChart(this.$refs.card);
             }
         }
     }
@@ -43,14 +40,14 @@ export default {
 </script>
 <style lang='less' scoped>
 .card-chart {
-    display: inline-block;
-    width: 33.333333%;
-    height: 250px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    .card{
-        width: 100%;
-        height: 100%;
-    }
+  display: inline-block;
+  width: 33.333333%;
+  height: 250px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  .card {
+    width: 100%;
+    height: 100%;
+  }
 }
 </style>

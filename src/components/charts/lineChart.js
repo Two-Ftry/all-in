@@ -26,9 +26,7 @@ function lineChart (el) {
                 .attr('height', _height)
                 .attr('width', _width);
         }
-        // renderAxes(_svg);
         _coordinate.renderAxes(_svg, _x, _y);
-        // _coordinate.defineBodyClip(_svg);
         renderBody(_svg);
         renderLines();
         renderDots();
@@ -39,13 +37,9 @@ function lineChart (el) {
             _bodyG = svg.append('g')
                 .attr('class', 'body')
                 .attr('transform', 'translate(' +
-                        _coordinate.xStart() + ',' +
-                        _coordinate.yEnd() + ')') // <-2E
-            ;
+                _coordinate.xStart() + ',' +
+                _coordinate.yEnd() + ')'); // <-2E
         }
-        // renderLines();
-
-        // renderDots();
     }
 
     function renderLines () {
@@ -127,7 +121,7 @@ export default (el) => {
     const data = [];
     for (var i = 0; i < numberOfSeries; ++i) {
         data.push(d3.range(numberOfDataPoint).map(function (i) {
-            return {x: i, y: randomData()};
+            return { x: i, y: randomData() };
         }));
     }
     var chart = lineChart(el)
