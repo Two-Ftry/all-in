@@ -27,9 +27,11 @@ class BaseChart {
         this._y = y;
         return this;
     }
+    // 创建坐标轴
     renderAxes (svg) {
         this.coordinate.renderAxes(svg, this._x, this._y);
     }
+    // 创建画布主体
     renderBody (svg, bodyG) {
         return this.coordinate.renderBody(svg, bodyG)
     }

@@ -43,15 +43,21 @@ const translateData = {
     },
     line (data) {
         const categoryData = data.xAxis.data;
-        const valueData = data.series[0].data;
+        const series = data.series;
 
         const result = [];
 
         categoryData.forEach((c, index) => {
-            const r = {};
-            r.name = c;
-            r.value = valueData[index];
-            result.push(r);
+            series.forEach((d, innerIndex) => {
+                const data = d.data;
+                if (!result[innerIndex]) {
+                    result[innerIndex] = [];
+                }
+                const r = {};
+                r.name = c;
+                r.value = data[index];
+                result[innerIndex].push(r);
+            });
         });
 
         return result;

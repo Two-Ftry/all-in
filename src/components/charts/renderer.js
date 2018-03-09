@@ -62,14 +62,14 @@ const rendererUtil = {
             // 画线条
             // 进入
             _bodyG.selectAll('path.line')
-                .data([data])
+                .data(data)
                 .enter()
                 .append('path')
                 .attr('class', 'line');
 
             // 退出
             _bodyG.selectAll('path.line')
-                .data([data])
+                .data(data)
                 .exit()
                 .remove();
 
@@ -82,33 +82,36 @@ const rendererUtil = {
             })
             // 更新
             _bodyG.selectAll('path.line')
-                .data([data])
+                .data(data)
                 .attr('d', (d) => {
                     return interpolate(d);
                 })
-                .style('fill', type === 'line' ? 'none' : '#ccc')
+                .style('fill', type === 'line' ? 'none' : 'green')
                 .style('stroke', 'green')
                 .style('stroke-width', 1);
         }
 
         function renderDots () {
-            _bodyG.selectAll('circle.line-circle')
-                .data(data)
-                .enter()
-                .append('circle')
-                .attr('class', 'line-circle')
-                .attr('r', 5)
-                .attr('cx', (d) => {
-                    return _chart.x()(d.name) + _chart.x().bandwidth() / 2;
-                })
-                .attr('cy', (d) => {
-                    return _chart.y()(d.value);
-                });
+            data.forEach((dataItem, i) => {
+                _bodyG.selectAll('circle.line-circle-' + i)
+                    .data(dataItem)
+                    .enter()
+                    .append('circle')
+                    .attr('class', 'line-circle-' + i)
+                    .attr('r', 5)
+                    .attr('cx', (d) => {
+                        return _chart.x()(d.name) + _chart.x().bandwidth() / 2;
+                    })
+                    .attr('cy', (d) => {
+                        return _chart.y()(d.value);
+                    });
+            });
         }
 
         // 创建y轴尺度
-        const valueData = data.map((d) => {
-            return d.value;
+        let valueData = [];
+        options.series.forEach((d) => {
+            valueData = valueData.concat(d.data)
         });
         const max = d3.max(valueData);
         const yScale = d3.scaleLinear()
@@ -117,9 +120,7 @@ const rendererUtil = {
         _chart.y(yScale); // 1
 
         // 创建x轴尺度
-        const categoryData = data.map((d) => {
-            return d.name;
-        });
+        const categoryData = options.xAxis.data;
         const xScale = d3.scaleBand()
             .domain(categoryData)
             .range([0, _coordinate.quadrantWidth()]);
