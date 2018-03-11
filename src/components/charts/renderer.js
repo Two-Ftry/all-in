@@ -9,6 +9,7 @@ const rendererUtil = {
         options['margins'] = margins;
         options['width'] = el.offsetWidth;
         options['height'] = el.offsetHeight;
+        const _colors = d3.scaleOrdinal(d3.schemeCategory20c)
 
         const _chart = new BaseChart(options);
 
@@ -61,43 +62,39 @@ const rendererUtil = {
         function renderRealLine (interpolate) {
             // 画线条
             // 进入
-            _bodyG.selectAll('path.line')
+            _bodyG.selectAll(`path.${type}`)
                 .data(data)
                 .enter()
                 .append('path')
-                .attr('class', 'line');
+                .attr('class', type);
 
             // 退出
-            _bodyG.selectAll('path.line')
+            _bodyG.selectAll(`path.${type}`)
                 .data(data)
                 .exit()
                 .remove();
-
-            const initData = [];
-            data.forEach((d) => {
-                initData.push({
-                    name: d.name,
-                    value: data[0].value
-                });
-            })
             // 更新
-            _bodyG.selectAll('path.line')
+            _bodyG.selectAll(`path.${type}`)
                 .data(data)
                 .attr('d', (d) => {
                     return interpolate(d);
                 })
-                .style('fill', type === 'line' ? 'none' : 'green')
-                .style('stroke', 'green')
+                .style('fill', (d, i) => {
+                    return type === 'line' ? 'none' : _colors(i)
+                })
+                .style('stroke', (d, i) => {
+                    return _colors(i)
+                })
                 .style('stroke-width', 1);
         }
 
         function renderDots () {
             data.forEach((dataItem, i) => {
-                _bodyG.selectAll('circle.line-circle-' + i)
+                _bodyG.selectAll(`circle.${type}-circle-${i}`)
                     .data(dataItem)
                     .enter()
                     .append('circle')
-                    .attr('class', 'line-circle-' + i)
+                    .attr('class', `${type}-circle-${i}`)
                     .attr('r', 5)
                     .attr('cx', (d) => {
                         return _chart.x()(d.name) + _chart.x().bandwidth() / 2;

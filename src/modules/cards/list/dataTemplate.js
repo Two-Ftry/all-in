@@ -77,6 +77,11 @@ export default {
                             name: 'A',
                             type: 'column',
                             data: [1, 2, 3, 4, 5, 9, 26]
+                        },
+                        {
+                            name: 'B',
+                            type: 'column',
+                            data: [3, 55, 3, 6, 69, 90, 6]
                         }
                     ]
                 }
