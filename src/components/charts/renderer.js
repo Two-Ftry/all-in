@@ -9,7 +9,7 @@ const rendererUtil = {
         options['margins'] = margins;
         options['width'] = el.offsetWidth;
         options['height'] = el.offsetHeight;
-        const _colors = d3.scaleOrdinal(d3.schemeCategory20c)
+        const _colors = d3.scaleOrdinal(d3.schemeCategory10)
 
         const _chart = new BaseChart(options);
 
@@ -47,6 +47,40 @@ const rendererUtil = {
         }
 
         function renderArea () {
+            if (options.stack) {
+                const stack = d3.stack();
+                stack.keys(options.stack.keys);
+
+                const area = d3.area()
+                    .x((d) => {
+                        return _chart.x()(d.data.key) + _chart.x().bandwidth() / 2;
+                    })
+                    .y0((d) => {
+                        return _chart.y()(d[0]);
+                    })
+                    .y1((d) => {
+                        return _chart.y()(d[1]);
+                    });
+
+                const layers = _bodyG.selectAll('g.layer')
+                    .data(stack(options.stack.data))
+                    .enter()
+                    .append('g')
+                    .classed('layer', true);
+
+                layers.append('path')
+                    .attr('d', (d, i) => {
+                        return area(d);
+                    })
+                    .attr('stroke', (d, i) => {
+                        return _colors(i);
+                    })
+                    .attr('fill', (d, i) => {
+                        return _colors(i);
+                    });
+
+                return;
+            }
             const area = d3.area()
                 .curve(d3.curveCatmullRom.alpha(0.2))
                 .x(function (d) {
@@ -89,7 +123,11 @@ const rendererUtil = {
         }
 
         function renderDots () {
-            data.forEach((dataItem, i) => {
+            let dotsData = data;
+            // if (options.stack) {
+            //     dotsData = options.stack.data;
+            // }
+            dotsData.forEach((dataItem, i) => {
                 _bodyG.selectAll(`circle.${type}-circle-${i}`)
                     .data(dataItem)
                     .enter()
@@ -101,14 +139,24 @@ const rendererUtil = {
                     })
                     .attr('cy', (d) => {
                         return _chart.y()(d.value);
-                    });
+                    })
+                    .attr('stroke', () => {
+                        return _colors(i)
+                    })
+                    .attr('fill', '#fff');
             });
         }
 
         // 创建y轴尺度
         let valueData = [];
         options.series.forEach((d) => {
-            valueData = valueData.concat(d.data)
+            if (options.stack && valueData.length > 0) {
+                valueData = valueData.map((item, i) => {
+                    return item + d.data[i];
+                });
+            } else {
+                valueData = valueData.concat(d.data)
+            }
         });
         const max = d3.max(valueData);
         const yScale = d3.scaleLinear()

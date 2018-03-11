@@ -72,14 +72,15 @@ export default {
                     yAxis: {
                         type: 'value'
                     },
+                    stack: false,
                     series: [
                         {
-                            name: 'A',
+                            name: '清风',
                             type: 'column',
                             data: [1, 2, 3, 4, 5, 9, 26]
                         },
                         {
-                            name: 'B',
+                            name: '浮云',
                             type: 'column',
                             data: [3, 55, 3, 6, 69, 90, 6]
                         }

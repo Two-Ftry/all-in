@@ -63,6 +63,34 @@ const translateData = {
         return result;
     },
     area (data) {
+        if (data.stack) {
+            const categoryData = data.xAxis.data;
+            const series = data.series;
+
+            const parseData = [];
+
+            categoryData.forEach((d, i) => {
+                const item = {};
+                item.key = d;
+                series.forEach((sd, innerIndex) => {
+                    const data = sd.data;
+                    item[sd.name] = data[i];
+                })
+                parseData.push(item);
+            });
+
+            const keys = [];
+            series.forEach((sd, innerIndex) => {
+                keys.push(sd.name);
+            })
+
+            if (typeof data.stack !== 'object') {
+                data.stack = {};
+            }
+            data.stack.data = parseData;
+            data.stack.keys = keys;
+        }
+
         return translateData.line(data);
     }
 };
