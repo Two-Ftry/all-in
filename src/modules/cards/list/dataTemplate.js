@@ -5,7 +5,7 @@ export default {
             chartsData: [
                 {
                     type: 'column',
-                    color: 'green',
+                    // colors: ['green'],
                     renderer: 'svg',
                     xAxis: {
                         type: 'category',
