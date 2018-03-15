@@ -92,6 +92,12 @@ const translateData = {
         }
 
         return translateData.line(data);
+    },
+    dots (data) {
+        return translateData.line(data);
+    },
+    scatterplot (data) {
+        return translateData.line(data);
     }
 };
 

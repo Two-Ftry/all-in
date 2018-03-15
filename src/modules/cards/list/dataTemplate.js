@@ -85,6 +85,36 @@ export default {
                             data: [3, 55, 3, 6, 69, 90, 6]
                         }
                     ]
+                },
+                {
+                    type: 'scatterplot',
+                    renderer: 'svg',
+                    xAxis: {
+                        type: 'category',
+                        name: 'letter',
+                        data: ['A', 'B', 'C', 'D', 'E', 'F', 'H']
+                    },
+                    yAxis: {
+                        type: 'value'
+                    },
+                    stack: false,
+                    series: [
+                        {
+                            name: '清风',
+                            type: 'column',
+                            data: [1, 2, 3, 4, 5, 9, 26]
+                        },
+                        {
+                            name: '浮云',
+                            type: 'column',
+                            data: [3, 55, 3, 6, 69, 90, 6]
+                        },
+                        {
+                            name: '浮云2',
+                            type: 'column',
+                            data: [97, 7, 30, 60, 7, 89, 103]
+                        }
+                    ]
                 }
             ]
         }

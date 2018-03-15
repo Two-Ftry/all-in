@@ -3,6 +3,8 @@ import { column } from './column';
 import { pie } from './pie';
 import { line } from './line';
 import { area } from './area';
+import { dots } from './dots';
+import { scatterplot } from './scatterplot';
 
 import { translate } from './optionUtils';
 
@@ -14,10 +16,10 @@ const utils = {
     column,
     pie,
     line,
-    area
+    area,
+    dots,
+    scatterplot
 };
-
-export const str = 'testting'
 
 export default function (el, options) {
     const data = translate.data(options.type, options);
