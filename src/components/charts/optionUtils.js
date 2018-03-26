@@ -93,7 +93,7 @@ const translateData = {
 
         return translateData.line(data);
     },
-    dots (data) {
+    bubble (data) {
         return translateData.line(data);
     },
     scatterplot (data) {

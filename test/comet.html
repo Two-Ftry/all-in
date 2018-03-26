@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function createStreamingClient (url, progress, finished) {
+            var xhr = new XMLHttpRequest();
+            
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 3) {
+                    progress('xxx');
+                } else if (xhr.readyState === 4) {
+                    finished('done')
+                }
+            }
+            xhr.open('get', url, true);
+            xhr.send(null);
+            return xhr;
+        }
+        createStreamingClient('http://localhost:3005', function(data) {
+            console.log('@@@progress', data);
+        }, function(data){
+            console.log('@@@finished', data);
+        })
+    </script>
+</body>
+</html>

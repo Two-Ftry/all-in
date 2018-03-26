@@ -3,7 +3,7 @@ import { column } from './column';
 import { pie } from './pie';
 import { line } from './line';
 import { area } from './area';
-import { dots } from './dots';
+import { bubble } from './bubble';
 import { scatterplot } from './scatterplot';
 
 import { translate } from './optionUtils';
@@ -17,7 +17,7 @@ const utils = {
     pie,
     line,
     area,
-    dots,
+    bubble,
     scatterplot
 };
 

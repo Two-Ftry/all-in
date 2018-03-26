@@ -9,15 +9,6 @@ function renderSymbols (svg, dotsData, chart, colors) {
     } else {
         colors = d3.scaleOrdinal(colors);
     }
-    // const symbolTypes = d3.scaleOrdinal()
-    //     .range([
-    //         'circle',
-    //         'cross',
-    //         'diamond',
-    //         'square',
-    //         'triangle-down',
-    //         'triangle-up'
-    //     ]);
     const symbolTypes = d3.scaleOrdinal()
         .range([
             d3.symbolCircle,
@@ -33,11 +24,6 @@ function renderSymbols (svg, dotsData, chart, colors) {
             .append('path')
             .attr('class', `symbol _${i}`);
 
-        // svg.selectAll(`path.path-scatterplot-${i}`)
-        //     .data(dataItem)
-        //     .exit()
-        //     .remove();
-
         svg.selectAll(`path._${i}`)
             .data(dataItem)
             .classed(symbolTypes(i), true)
@@ -47,24 +33,10 @@ function renderSymbols (svg, dotsData, chart, colors) {
                 const y = chart.y()(d.value);
                 return `translate(${x}, ${y})`;
             })
-            .attr('d', d3.symbol().type(symbolTypes(i)));
-        // svg.selectAll(`circle.${type}-circle-${i}`)
-        //     .data(dataItem)
-        //     .enter()
-        //     .append('circle')
-        //     .attr('class', `${type}-circle-${i}`)
-        //     .attr('r', (d) => {
-        //         return d.value > 20 ? 20 : (d.value < 5 ? 5 : d.value);
-        //     })
-        //     .attr('cx', (d) => {
-        //         return chart.x()(d.name) + chart.x().bandwidth() / 2;
-        //     })
-        //     .attr('cy', (d) => {
-        //         return chart.y()(d.value);
-        //     })
-        //     .attr('fill', () => {
-        //         return colors(i)
-        //     });
+            .attr('d', d3.symbol().type(symbolTypes(i)))
+            .attr('fill', () => {
+                return colors(i);
+            });
     });
 }
 

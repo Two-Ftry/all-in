@@ -92,7 +92,7 @@ const renderer = {
  * @param {*} el
  * @param {*} options
  */
-export function dots (el, options, data) {
+export function bubble (el, options, data) {
     options = options || {};
     options.renderer = options.renderer || 'svg';
 
