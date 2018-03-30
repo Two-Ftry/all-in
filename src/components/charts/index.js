@@ -5,6 +5,7 @@ import { line } from './line';
 import { area } from './area';
 import { bubble } from './bubble';
 import { scatterplot } from './scatterplot';
+import { treemap } from './treemap';
 
 import { translate } from './optionUtils';
 
@@ -18,7 +19,8 @@ const utils = {
     line,
     area,
     bubble,
-    scatterplot
+    scatterplot,
+    treemap
 };
 
 export default function (el, options) {

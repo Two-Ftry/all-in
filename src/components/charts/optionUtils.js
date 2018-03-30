@@ -98,6 +98,9 @@ const translateData = {
     },
     scatterplot (data) {
         return translateData.line(data);
+    },
+    treemap (data) {
+        return data;
     }
 };
 

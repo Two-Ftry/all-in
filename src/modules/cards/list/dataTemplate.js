@@ -26,7 +26,7 @@ export default {
                 {
                     type: 'pie',
                     endAngle: 2 * Math.PI,
-                    renderer: 'svg',
+                    renderer: 'canvas',
                     innerRadius: '0',
                     padAngle: 0,
                     series: [
@@ -72,7 +72,7 @@ export default {
                     yAxis: {
                         type: 'value'
                     },
-                    stack: false,
+                    stack: true,
                     series: [
                         {
                             name: '清风',
@@ -145,6 +145,9 @@ export default {
                             data: [97, 7, 30, 60, 7, 89, 103]
                         }
                     ]
+                },
+                {
+                    type: 'treemap'
                 }
             ]
         }
