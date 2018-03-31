@@ -6,6 +6,7 @@ import { area } from './area';
 import { bubble } from './bubble';
 import { scatterplot } from './scatterplot';
 import { treemap } from './treemap';
+import { tree } from './tree';
 
 import { translate } from './optionUtils';
 
@@ -20,7 +21,8 @@ const utils = {
     area,
     bubble,
     scatterplot,
-    treemap
+    treemap,
+    tree
 };
 
 export default function (el, options) {

@@ -101,6 +101,9 @@ const translateData = {
     },
     treemap (data) {
         return data;
+    },
+    tree (data) {
+        return data;
     }
 };
 

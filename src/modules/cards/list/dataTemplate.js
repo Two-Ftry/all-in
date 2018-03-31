@@ -148,6 +148,9 @@ export default {
                 },
                 {
                     type: 'treemap'
+                },
+                {
+                    type: 'tree'
                 }
             ]
         }
