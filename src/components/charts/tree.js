@@ -80,7 +80,7 @@ function renderCell (_bodyG, options, _chart) {
         .data(nodes)
         .select('text')
         .attr('x', (d) => {
-            return d.children ? -8 : 8;
+            return d.children ? -20 : 20;
         })
         .attr('y', (d) => {
             return 0;

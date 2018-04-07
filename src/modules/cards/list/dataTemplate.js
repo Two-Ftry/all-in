@@ -151,6 +151,9 @@ export default {
                 },
                 {
                     type: 'tree'
+                },
+                {
+                    type: 'pack'
                 }
             ]
         }

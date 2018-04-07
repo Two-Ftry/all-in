@@ -104,6 +104,9 @@ const translateData = {
     },
     tree (data) {
         return data;
+    },
+    pack (data) {
+        return data;
     }
 };
 
