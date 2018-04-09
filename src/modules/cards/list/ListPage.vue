@@ -1,6 +1,8 @@
 <template>
   <div class="card-page">
-    <card-chart v-for="(d, index) in chartsData" :chart-data="d" :key="index"></card-chart>
+    <div class="card-inner-page">
+      <card-chart v-for="(d, index) in chartsData" :chart-data="d" :key="index"></card-chart>
+    </div>
   </div>
 </template>
 
@@ -28,6 +30,10 @@ export default {
 </script>
 <style lang='less' scoped>
 .card-page {
+  height: 100%;
+  overflow: auto;
+}
+.card-inner-page{
   padding: 20px;
 }
 </style>

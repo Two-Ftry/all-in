@@ -23,6 +23,10 @@ export default {
                 {
                     name: '列表',
                     to: 'list'
+                },
+                {
+                    name: '交互',
+                    to: 'interaction'
                 }
             ]
         };
