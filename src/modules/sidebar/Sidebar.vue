@@ -3,7 +3,7 @@
       <h1>My C3</h1>
       <ul>
           <li v-for="menu in menus"
-            :class="{'active': $route.name === menu.to}"
+            :class="{'active': $route.name === menu.to.name || (menu.to.children && menu.to.children.indexOf($route.name) !== -1)}"
             @click="handleMenu(menu.to)">
               {{menu.name}}
             </li>
@@ -18,15 +18,22 @@ export default {
             menus: [
                 {
                     name: '新建',
-                    to: 'edit'
+                    to: {
+                        name: 'edit'
+                    }
                 },
                 {
                     name: '列表',
-                    to: 'list'
+                    to: {
+                        name: 'list'
+                    }
                 },
                 {
                     name: '交互',
-                    to: 'interaction'
+                    to: {
+                        name: 'mouse',
+                        children: ['mouse', 'touch']
+                    }
                 }
             ]
         };

@@ -9,7 +9,9 @@ Vue.use(VueRouter);
 // 单独的chunkFilename
 const ListPage = () => import(/* webpackChunkName: "list" */ '../modules/cards/list/ListPage.vue');
 const EditPage = () => import(/* webpackChunkName: "edit" */ '../modules/cards/edit/EditPage.vue');
-const InteractionPage = () => import(/* webpackChunkName: "mouse" */ '../modules/interaction/mouse.vue');
+const InteractionPage = () => import(/* webpackChunkName: "interaction" */ '../modules/interaction/interaction.vue');
+const MousePage = () => import(/* webpackChunkName: "interaction" */ '../modules/interaction/mouse.vue');
+const TouchPage = () => import(/* webpackChunkName: "interaction" */ '../modules/interaction/touch.vue');
 
 export function createRouter () {
     return new VueRouter({
@@ -30,9 +32,24 @@ export function createRouter () {
                 component: ListPage
             },
             {
-                name: 'interaction',
                 path: '/interaction',
-                component: InteractionPage
+                component: InteractionPage,
+                children: [
+                    {
+                        path: '/',
+                        component: MousePage
+                    },
+                    {
+                        name: 'mouse',
+                        path: 'mouse',
+                        component: MousePage
+                    },
+                    {
+                        name: 'touch',
+                        path: 'touch',
+                        component: TouchPage
+                    }
+                ]
             }
         ]
     })

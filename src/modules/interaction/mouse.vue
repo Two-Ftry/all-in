@@ -1,5 +1,5 @@
 <template>
-  <div ref="mouse" class="mouse">
+  <div class="mouse">
       <svg ref="mousesvg"></svg>
   </div>
 </template>
