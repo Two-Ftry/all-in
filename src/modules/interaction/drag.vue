@@ -52,7 +52,15 @@ export default {
                 .call(drag);
 
             function move () {
-                d3.select(this).attr('transform', `translate(${d3.event.x}, ${d3.event.y})`);
+                const x = d3.event.x;
+                const y = d3.event.y;
+                if (isBoundaries(x, y)) {
+                    d3.select(this).attr('transform', `translate(${x}, ${y})`);
+                }
+            }
+            function isBoundaries (x, y) {
+                return (x >= (0 + r) && x <= (width - r)) &&
+                    (y >= (0 + r) && y <= (height - r));
             }
         }
     }
