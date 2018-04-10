@@ -12,6 +12,8 @@ const EditPage = () => import(/* webpackChunkName: "edit" */ '../modules/cards/e
 const InteractionPage = () => import(/* webpackChunkName: "interaction" */ '../modules/interaction/interaction.vue');
 const MousePage = () => import(/* webpackChunkName: "interaction" */ '../modules/interaction/mouse.vue');
 const TouchPage = () => import(/* webpackChunkName: "interaction" */ '../modules/interaction/touch.vue');
+const ZoomPage = () => import(/* webpackChunkName: "interaction" */ '../modules/interaction/zoom.vue');
+const DragPage = () => import(/* webpackChunkName: "interaction" */ '../modules/interaction/drag.vue');
 
 export function createRouter () {
     return new VueRouter({
@@ -48,6 +50,16 @@ export function createRouter () {
                         name: 'touch',
                         path: 'touch',
                         component: TouchPage
+                    },
+                    {
+                        name: 'zoom',
+                        path: 'zoom',
+                        component: ZoomPage
+                    },
+                    {
+                        name: 'drag',
+                        path: 'drag',
+                        component: DragPage
                     }
                 ]
             }

@@ -32,6 +32,18 @@ export default {
                     to: {
                         name: 'touch'
                     }
+                },
+                {
+                    name: '缩放、平移',
+                    to: {
+                        name: 'zoom'
+                    }
+                },
+                {
+                    name: '拖拽',
+                    to: {
+                        name: 'drag'
+                    }
                 }
             ]
         };

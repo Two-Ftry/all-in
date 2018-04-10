@@ -52,7 +52,7 @@ export default {
                 .attr('fill', 'red')
                 .attr('stroke', 'none')
                 .transition()
-                .duration(4000)
+                .duration(2000)
                 .attrTween('d', () => {
                     const scale = d3.scaleLinear()
                         .range([
